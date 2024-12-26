@@ -22,7 +22,7 @@
 								<li class="has-dropdown">
 									<a href="/men">Men</a>
 									<ul class="dropdown">
-										<li><a href="/product-detail">Product Detail</a></li>
+										{{-- <li><a href="/product-detail">Product Detail</a></li> --}}
 										<li><a href="/cart">Shopping Cart</a></li>
 										<li><a href="/checkout">Checkout</a></li>
 										<li><a href="/order-complete">Order Complete</a></li>

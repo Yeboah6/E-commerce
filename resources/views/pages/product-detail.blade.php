@@ -1,46 +1,6 @@
+@extends('layouts.app')
+@section('content')
 
-
-
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<title>Footwear - Free Bootstrap 4 Template by Colorlib</title>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Ion Icon Fonts-->
-	<link rel="stylesheet" href="css/ionicons.min.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
-
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
-
-	<!-- Owl Carousel -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	
-	<!-- Date Picker -->
-	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-	<!-- Flaticons  -->
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
-
-	</head>
-	<body>
-		
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -62,41 +22,26 @@
 				<div class="row row-pb-lg product-detail-wrap">
 					<div class="col-sm-8">
 						<div class="owl-carousel">
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>
+							@if (!empty($file['additionalImageUrls']))
+                				@foreach ($file['additionalImageUrls'] as $imageUrl)
+									<div class="item">
+										<div class="product-entry border">
+											<a href="#" class="prod-img">
+												<img src="https://{{ $imageUrl }}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+											</a>
+										</div>
+									</div>
+                				@endforeach
+                			@else
+                		    	<p>No additional images available.</p>
+                			@endif
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="product-desc">
-							<h3>Women's Boots Shoes Maca</h3>
+							<h3>{{$file['brandName']}}</h3>
 							<p class="price">
-								<span>$68.00</span> 
+								<span>{{ $file['price']['current']['text'] ?? 'N/A' }}</span> 
 								<span class="rate">
 									<i class="icon-star-full"></i>
 									<i class="icon-star-full"></i>
@@ -106,8 +51,10 @@
 									(74 Rating)
 								</span>
 							</p>
-							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic 
-								life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+							<p>{{ $file['name'] }}
+								{{-- Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic 
+								life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. --}}
+							</p>
 							<div class="size-wrap">
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
@@ -137,22 +84,22 @@
 				               </ul>
 				            </div>
 							</div>
-                     <div class="input-group mb-4">
-                     	<span class="input-group-btn">
-                        	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                           <i class="icon-minus2"></i>
-                        	</button>
-                    		</span>
-                     	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-                     	<span class="input-group-btn ml-1">
-                        	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                             <i class="icon-plus2"></i>
-                         </button>
-                     	</span>
-                  	</div>
-                  	<div class="row">
-	                  	<div class="col-sm-12 text-center">
-									<p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
+							<div class="input-group mb-4">
+								<span class="input-group-btn">
+									<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+										<i class="icon-minus2"></i>
+									</button>
+								</span>
+								<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+								<span class="input-group-btn ml-1">
+									<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+										<i class="icon-plus2"></i>
+									</button>
+								</span>
+							</div>
+                  			<div class="row">
+	                  			<div class="col-sm-12 text-center">
+									<p class="addtocart"><button type="submit" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</button></p>
 								</div>
 							</div>
 						</div>
@@ -172,9 +119,9 @@
 								    <li class="nav-item">
 								      <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Manufacturer</a>
 								    </li>
-								    <li class="nav-item">
+								    {{-- <li class="nav-item">
 								      <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Review</a>
-								    </li>
+								    </li> --}}
 								  </ul>
 
 								  <div class="tab-content" id="pills-tabContent">
@@ -197,7 +144,7 @@
 
 								    <div class="tab-pane border fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
 								      <div class="row">
-								   		<div class="col-md-8">
+								   		{{-- <div class="col-md-8">
 								   			<h3 class="head">23 Reviews</h3>
 								   			<div class="review">
 										   		<div class="user-img" style="background-image: url(images/person1.jpg)"></div>
@@ -259,8 +206,8 @@
 										   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
 										   		</div>
 										   	</div>
-								   		</div>
-								   		<div class="col-md-4">
+								   		</div> --}}
+								   		{{-- <div class="col-md-4">
 								   			<div class="rating-wrap">
 									   			<h3 class="head">Give a Review</h3>
 									   			<div class="wrap">
@@ -321,7 +268,7 @@
 										   			</p>
 										   		</div>
 									   		</div>
-								   		</div>
+								   		</div> --}}
 								   	</div>
 								    </div>
 								  </div>
@@ -399,10 +346,7 @@
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<p>
-							<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
-							<span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
+							<span></span> 
 						</p>
 					</div>
 				</div>
@@ -414,68 +358,39 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
 	</div>
 	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-   <!-- popper -->
-   <script src="js/popper.min.js"></script>
-   <!-- bootstrap 4.1 -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- jQuery easing -->
-   <script src="js/jquery.easing.1.3.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Main -->
-	<script src="js/main.js"></script>
-
+	
 	<script>
-		$(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
+		document.addEventListener('DOMContentLoaded', function () {
+			const quantityInput = document.getElementById('quantity');
+			const btnMinus = document.querySelector('.quantity-left-minus');
+			const btnPlus = document.querySelector('.quantity-right-plus');
+	
+			// Function to update the quantity value
+			function updateQuantity(delta) {
+				let currentValue = parseInt(quantityInput.value) || 1;
+				const minValue = parseInt(quantityInput.min) || 1;
+				const maxValue = parseInt(quantityInput.max) || 100;
+	
+				currentValue += delta;
+	
+				if (currentValue < minValue) {
+					currentValue = minValue;
+				} else if (currentValue > maxValue) {
+					currentValue = maxValue;
+				}
+	
+				quantityInput.value = currentValue;
+			}
+	
+			// Event listeners for buttons
+			btnMinus.addEventListener('click', function () {
+				updateQuantity(-1);
+			});
+	
+			btnPlus.addEventListener('click', function () {
+				updateQuantity(1);
+			});
 		});
 	</script>
 
-
-	</body>
-</html>
-
+@endsection

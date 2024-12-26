@@ -57,7 +57,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Contact</span></p>
+						<p class="bread"><span><a href="/index">Home</a></span> / <span>Contact</span></p>
 					</div>
 				</div>
 			</div>

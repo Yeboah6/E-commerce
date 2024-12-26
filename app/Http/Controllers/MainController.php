@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MainController extends Controller
 {
     public function scrape() {
-        echo 'test';
+        $contents = File::get(base_path('public/dataset_asos-com-scraper.json'));
+        $json = json_decode(json:$contents, associative: true);
+        print_r($json);
     }
 
     public function index() {
-        return view('pages.index');
+        $contents = File::get(base_path('public/dataset_asos-com-scraper.json'));
+        $json = json_decode(json:$contents, associative: true);
+        return view('pages.index', compact('json'));
     }
 
     public function about() {
@@ -42,8 +47,16 @@ class MainController extends Controller
         return view('pages.order-complete');
     }
 
-    public function productDetail() {
-        return view('pages.product-detail');
+    public function productDetail($id) {
+        $contents = File::get(base_path('public/dataset_asos-com-scraper.json'));
+        $json = json_decode(json:$contents, associative: true);
+
+        foreach($json as $file) {
+            if ($file['id'] == $id) {
+                return view('pages.product-detail', compact('file'));
+            }
+        }
+        
     }
 
     public function women() {

@@ -21,7 +21,8 @@ Route::get('/men', [MainController::class, 'men']);
 
 Route::get('/order-complete', [MainController::class, 'orderComplete']);
 
-Route::get('/product-detail', [MainController::class, 'productDetail']);
+Route::get('/product-detail/{id}', [MainController::class, 'productDetail']);
+// Route::get('/product-detail', [MainController::class, 'productDetail']);
 
 Route::get('/women', [MainController::class, 'women']);
 
